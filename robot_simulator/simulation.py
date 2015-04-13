@@ -8,7 +8,7 @@ class Simulation(object):
 
     def reset(self):
         self.board = Board(5, 5)
-        self.robot = Robot(board)
+        self.robot = Robot(self.board)
 
     def run_file(self, input_file):
         command_parser = CommandParser()

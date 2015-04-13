@@ -41,7 +41,7 @@ class Vector(Point):
     def magnitude(self):
         return math.sqrt(self._x**2 + self._y**2)
 
-class Rect(Object):
+class Rect(object):
     def __init__(self, point1, point2):
         self._top = max(point1.y, point2.y)
         self._right = max(point1.x, point2.x)
@@ -67,3 +67,4 @@ class Rect(Object):
     def contains(self, point):
         contains_x = (self._left <= point.x) and (point.x <= self._right)
         contains_y = (self._bottom <= point.y) and (point.y <= self._top)
+        return contains_x and contains_y
