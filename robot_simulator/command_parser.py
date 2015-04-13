@@ -1,0 +1,2 @@
+class CommandParser(object):
+    pass
