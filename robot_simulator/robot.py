@@ -26,3 +26,19 @@ class Robot(object):
     @direction.setter
     def direction(self, direction):
         self._direction = direction
+
+    def place(self, position, direction):
+        self.position = position
+        self.direction = direction
+
+    def move_by(self, step):
+        new_position = self._position + (self.direction.vector * step)
+        self.position = new_position
+
+    def turn_by(self, step):
+        new_drection = self.direction.turn_by(step)
+        self.direction = new_drection
+
+    def report(self):
+        print ("Output: %d,%d,%s" %
+                (self.position.x, self.position.y, self.direction.value))

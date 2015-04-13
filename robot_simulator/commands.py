@@ -28,34 +28,32 @@ class PlaceCommand(BaseCommand):
     @BaseCommand.params.setter
     def params(self, values):
         BaseCommand.params.fset(self, values)
-        self.position = Point(values[0], values[1])
-        self.direction = Direction(values[2])
+        self._position = Point(values[0], values[1])
+        self._direction = Direction(values[2])
 
     def invoke(self, target):
-        target.position = self.position
-        target.direction = self.direction
+        target.place(self._position, self._direction)
 
 class MoveCommand(BaseCommand):
     identifier = "MOVE"
 
     def invoke(self, target):
-        target.position = target.position + target.direction.vector
+        target.move_by(1)
 
 class LeftCommand(BaseCommand):
     identifier = "LEFT"
 
     def invoke(self, target):
-        target.direction = target.direction.turn_by(-1)
+        target.turn_by(-1)
 
 class RightCommand(BaseCommand):
     identifier = "RIGHT"
 
     def invoke(self, target):
-        target.direction = target.direction.turn_by(1)
+        target.turn_by(1)
 
 class ReportCommand(BaseCommand):
     identifier = "REPORT"
 
     def invoke(self, target):
-        print ("Output: %d,%d,%s" %
-                (target.position.x, target.position.y, target.direction.value))
+        target.report()
