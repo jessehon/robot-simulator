@@ -4,7 +4,7 @@ from direction import Direction
 
 class BaseCommand():
     __metaclass__ = ABCMeta
-    _identifier = ""
+    identifier = ""
     _params = []
 
     def __init__(self, params=None):
@@ -34,3 +34,28 @@ class PlaceCommand(BaseCommand):
     def invoke(self, target):
         target.position = self.position
         target.direction = self.direction
+
+class MoveCommand(BaseCommand):
+    identifier = "MOVE"
+
+    def invoke(self, target):
+        target.position.add(target.direction.vector)
+
+class LeftCommand(BaseCommand):
+    identifier = "LEFT"
+
+    def invoke(self, target):
+        target.direction.turn(-1)
+
+class RightCommand(BaseCommand):
+    identifier = "RIGHT"
+
+    def invoke(self, target):
+        target.direction.turn(1)
+
+class ReportCommand(BaseCommand):
+    identifier = "REPORT"
+
+    def invoke(self, target):
+        print ("Output: %d,%d,%s" %
+                (target.position.x, target.position.y, target.direction.value))
