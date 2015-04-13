@@ -1,11 +1,13 @@
+from position import Vector
+
 class Direction(object):
     VALUES = ['NORTH', 'EAST', 'SOUTH', 'WEST']
     NORTH, EAST, SOUTH, WEST = VALUES
     VECTORS = {
-        NORTH: [0, 1],
-        EAST: [1, 0],
-        SOUTH: [0, -1],
-        WEST: [-1, 0],
+        NORTH: Vector(0, 1),
+        EAST: Vector(1, 0),
+        SOUTH: Vector(0, -1),
+        WEST: Vector(-1, 0),
     }
 
     def __init__(self, value):
