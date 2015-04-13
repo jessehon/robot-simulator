@@ -45,13 +45,13 @@ class LeftCommand(BaseCommand):
     identifier = "LEFT"
 
     def invoke(self, target):
-        target.direction = target.direction.turn(-1)
+        target.direction = target.direction.turn_by(-1)
 
 class RightCommand(BaseCommand):
     identifier = "RIGHT"
 
     def invoke(self, target):
-        target.direction = target.direction.turn(1)
+        target.direction = target.direction.turn_by(1)
 
 class ReportCommand(BaseCommand):
     identifier = "REPORT"
