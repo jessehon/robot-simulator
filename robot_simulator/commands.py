@@ -3,22 +3,22 @@ from abc import ABCMeta, abstractmethod
 class BaseCommand():
     __metaclass__ = ABCMeta
     _identifier = ""
-    _args = []
+    _params = []
 
-    def __init__(args=None):
-        self.args = args
+    def __init__(params=None):
+        self.params = params
 
     @property
     def identifier(self):
         return self._identifier
 
     @property
-    def args(self):
-        return self._args
+    def params(self):
+        return self._params
 
-    @args.setter
-    def args(self, values):
-        self._args = values
+    @params.setter
+    def params(self, values):
+        self._params = values
 
     @abstractmethod
     def invoke(target):
