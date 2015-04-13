@@ -1,7 +1,9 @@
+import math
+
 class Point(object):
     def __init__(self, x=0, y=0):
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
 
     def __eq__(self, other):
         return (self.x == other.x) and (self.y == other.y)
@@ -25,3 +27,12 @@ class Point(object):
     def add(self, other):
         self._x = self._x + other.x
         self._y = self._y + other.y
+
+class Vector(Point):
+    @property
+    def magnitude(self):
+        return math.sqrt(self._x**2 + self._y**2)
+
+    def scale_by(self, scale):
+        self._x = self._x*scale
+        self._y = self._y*scale
