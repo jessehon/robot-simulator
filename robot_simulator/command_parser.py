@@ -10,21 +10,21 @@ class CommandParser(object):
         lines = input_file.read().splitlines()
         commands = []
         for line in lines:
-            command = parse_line(line)
-            commands.push(command)
+            command = self.parse_line(line)
+            commands.append(command)
         return commands
 
     def parse_line(self, line):
-        m = re.match(r"(\w+) ?(.*)?")
-        identifier = m.group(0)
-        arguments = m.group(1).split(',')
+        m = re.match(r"(\w+)( (.*))?", line)
+        identifier = m.group(1)
+        arguments = m.group(3).split(',')
 
-        for command_class in command_classes:
+        for command_class in self.command_classes:
             if identifier == command_class.identifier:
                 try:
                     command = command_class(arguments)
                     return command
                 except:
-                    raise ParseError("Problem with parsing " % command_class.__name__)
+                    raise ParseError("Problem with parsing %s" % command_class.__name__)
 
         return None

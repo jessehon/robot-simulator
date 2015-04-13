@@ -4,7 +4,7 @@ from command_parser import CommandParser
 
 class Simulation(object):
     def __init__(self):
-        reset()
+        self.reset()
 
     def reset(self):
         self.board = Board(5, 5)
@@ -13,7 +13,7 @@ class Simulation(object):
     def run_file(self, input_file):
         command_parser = CommandParser()
         commands = command_parser.parse_file(input_file)
-        run(commands)
+        self.run(commands)
 
     def run(self, commands):
         for command in commands:

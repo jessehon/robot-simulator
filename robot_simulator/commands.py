@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-class BaseCommand()
+class BaseCommand():
     __metaclass__ = ABCMeta
     _identifier = ""
     _args = []
