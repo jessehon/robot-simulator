@@ -1,4 +1,4 @@
-from robot import Robot
+from robot import Robot, MoveOutOfBoundsError, MissingPlaceError
 from board import Board
 from command_parser import CommandParser
 
@@ -18,3 +18,10 @@ class Simulation(object):
     def run(self, commands):
         for command in commands:
             command.invoke(target=self.robot)
+
+            try:
+                command.invoke(target=self.robot)
+            except MoveOutOfBoundsError as e:
+                print 'Skip %s:' % command.identifier, e
+            except MissingPlaceError as e:
+                print 'Skip %s:' % command.identifier, e

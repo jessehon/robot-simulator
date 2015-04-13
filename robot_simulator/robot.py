@@ -1,3 +1,9 @@
+class MoveOutOfBoundsError(Exception):
+    pass
+
+class MissingPlaceError(Exception):
+    pass
+
 class Robot(object):
     def __init__(self, board):
         self._board = board
@@ -15,7 +21,7 @@ class Robot(object):
     @position.setter
     def position(self, position):
         if not self._board.rect.contains(position):
-            raise Exception('Invalid move')
+            raise MoveOutOfBoundsError('Unable to move Robot out of bounds')
 
         self._position = position
 
@@ -32,13 +38,22 @@ class Robot(object):
         self.direction = direction
 
     def move_by(self, step):
-        new_position = self._position + (self.direction.vector * step)
+        if not self._position:
+            raise MissingPlaceError('Unable to move Robot until placed')
+
+        new_position = self._position + (self._direction.vector * step)
         self.position = new_position
 
     def turn_by(self, step):
-        new_drection = self.direction.turn_by(step)
+        if not self._direction:
+            raise MissingPlaceError('Unable to turn Robot until placed')
+
+        new_drection = self._direction.turn_by(step)
         self.direction = new_drection
 
     def report(self):
+        if not self._direction:
+            raise MissingPlaceError('Unable to report Robot until placed')
+
         print ("Output: %d,%d,%s" %
-                (self.position.x, self.position.y, self.direction.value))
+                (self._position.x, self._position.y, self._direction.value))
