@@ -1,4 +1,5 @@
 import re
+from commands import *
 
 class ParseError(Exception):
     pass
