@@ -26,4 +26,5 @@ class Direction(object):
     def turn(self, step=1):
         index = self.VALUES.index(self._value)
         new_index = (index + step) % len(self.VALUES)
-        self._value = self.VALUES[new_index]
+        new_value = self.VALUES[new_index]
+        return self.__class__(new_value)

@@ -8,6 +8,11 @@ class Point(object):
     def __eq__(self, other):
         return (self.x == other.x) and (self.y == other.y)
 
+    def __add__(self, other):
+        x = self._x + other.x
+        y = self._y + other.y
+        return self.__class__(x, y)
+
     @property
     def x(self):
         return self._x
@@ -24,18 +29,17 @@ class Point(object):
     def y(self, value):
         self._y = int(value)
 
-    def add(self, other):
-        self._x = self._x + other.x
-        self._y = self._y + other.y
+
 
 class Vector(Point):
+    def __mul__(self, scale):
+        x = self._x*scale
+        y = self._y*scale
+        return self.__class__(x, y)
+
     @property
     def magnitude(self):
         return math.sqrt(self._x**2 + self._y**2)
-
-    def scale_by(self, scale):
-        self._x = self._x*scale
-        self._y = self._y*scale
 
 class Rect(Object):
     def __init__(self, point1, point2):

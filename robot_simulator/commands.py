@@ -39,19 +39,19 @@ class MoveCommand(BaseCommand):
     identifier = "MOVE"
 
     def invoke(self, target):
-        target.position.add(target.direction.vector)
+        target.position = target.position + target.direction.vector
 
 class LeftCommand(BaseCommand):
     identifier = "LEFT"
 
     def invoke(self, target):
-        target.direction.turn(-1)
+        target.direction = target.direction.turn(-1)
 
 class RightCommand(BaseCommand):
     identifier = "RIGHT"
 
     def invoke(self, target):
-        target.direction.turn(1)
+        target.direction = target.direction.turn(1)
 
 class ReportCommand(BaseCommand):
     identifier = "REPORT"
