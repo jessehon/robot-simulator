@@ -1,4 +1,6 @@
 from abc import ABCMeta, abstractmethod
+from point import Point
+from direction import Direction
 
 class BaseCommand():
     __metaclass__ = ABCMeta
@@ -23,3 +25,16 @@ class BaseCommand():
     @abstractmethod
     def invoke(self, target):
         pass
+
+class PlaceCommand(BaseCommand):
+    _identifier = "PLACE"
+
+    @BaseCommand.params.setter
+    def params(self, values):
+        super(BaseCommand, self).params(values)
+        self.position = Point(values[0], values[1])
+        self.direction = Direction(values[2])
+
+    def invoke(self, target):
+        target.position = self.position
+        target.direction = self.direction
