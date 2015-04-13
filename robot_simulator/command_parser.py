@@ -1,7 +1,10 @@
 import re
 from commands import *
 
-class ParseError(Exception):
+class CommandParseError(Exception):
+    pass
+
+class CommandNotFoundError(Exception):
     pass
 
 class CommandParser(object):
@@ -30,6 +33,6 @@ class CommandParser(object):
                     command = command_class(params)
                     return command
                 except:
-                    raise ParseError("Problem with parsing %s" % command_class.__name__)
+                    raise CommandParseError("Problem with parsing %s" % identifier)
 
-        return None
+        raise CommandNotFoundError("Problem finding matching command for %s" % identifier)
