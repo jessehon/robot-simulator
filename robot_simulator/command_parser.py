@@ -17,12 +17,16 @@ class CommandParser(object):
     def parse_line(self, line):
         m = re.match(r"(\w+)( (.*))?", line)
         identifier = m.group(1)
-        arguments = m.group(3).split(',')
+        params_text = m.group(3)
+        if params_text:
+            params = params_text.split(',')
+        else:
+            params = []
 
         for command_class in self.command_classes:
             if identifier == command_class.identifier:
                 try:
-                    command = command_class(arguments)
+                    command = command_class(params)
                     return command
                 except:
                     raise ParseError("Problem with parsing %s" % command_class.__name__)
