@@ -5,7 +5,7 @@ class BaseCommand():
     _identifier = ""
     _params = []
 
-    def __init__(params=None):
+    def __init__(self, params=None):
         self.params = params
 
     @property
@@ -21,5 +21,5 @@ class BaseCommand():
         self._params = values
 
     @abstractmethod
-    def invoke(target):
+    def invoke(self, target):
         pass
