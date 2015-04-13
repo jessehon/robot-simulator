@@ -36,3 +36,30 @@ class Vector(Point):
     def scale_by(self, scale):
         self._x = self._x*scale
         self._y = self._y*scale
+
+class Rect(Object):
+    def __init__(self, point1, point2):
+        self._top = max(point1.y, point2.y)
+        self._right = max(point1.x, point2.x)
+        self._bottom = min(point1.y, point2.y)
+        self._left = min(point1.x, point2.x)
+
+    @property
+    def top(self):
+        return self._top
+
+    @property
+    def right(self):
+        return self._right
+
+    @property
+    def bottom(self):
+        return self._bottom
+
+    @property
+    def left(self):
+        return self._left
+
+    def contains(self, point):
+        contains_x = (self._left <= point.x) and (point.x <= self._right)
+        contains_y = (self._bottom <= point.y) and (point.y <= self._top)
