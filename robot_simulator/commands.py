@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from point import Point
+from position import Point
 from direction import Direction
 
 class BaseCommand():
@@ -9,10 +9,6 @@ class BaseCommand():
 
     def __init__(self, params=None):
         self.params = params
-
-    @property
-    def identifier(self):
-        return self._identifier
 
     @property
     def params(self):
@@ -27,11 +23,11 @@ class BaseCommand():
         pass
 
 class PlaceCommand(BaseCommand):
-    _identifier = "PLACE"
+    identifier = "PLACE"
 
     @BaseCommand.params.setter
     def params(self, values):
-        super(BaseCommand, self).params(values)
+        BaseCommand.params.fset(self, values)
         self.position = Point(values[0], values[1])
         self.direction = Direction(values[2])
 
