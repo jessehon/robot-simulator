@@ -1,5 +1,8 @@
 from position import Vector
 
+class InvalidDirectionError(Exception):
+    pass
+
 class Direction(object):
     VALUES = ['NORTH', 'EAST', 'SOUTH', 'WEST']
     NORTH, EAST, SOUTH, WEST = VALUES
@@ -12,7 +15,7 @@ class Direction(object):
 
     def __init__(self, value):
         if value not in self.VALUES:
-            raise Exception('bad direction')
+            raise InvalidDirectionError('Invalid direction')
         self._value = value
 
     def __eq__(self, other):
