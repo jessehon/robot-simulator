@@ -17,7 +17,6 @@ class Simulation(object):
 
     def run(self, commands):
         for command in commands:
-            command.invoke(target=self.robot)
 
             try:
                 command.invoke(target=self.robot)
