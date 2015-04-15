@@ -20,4 +20,4 @@ class CommandParser(object):
                 command = command_class(params)
                 return command
 
-        raise CommandNotFoundError("Problem finding matching command for %s" % identifier)
+        raise CommandNotFoundError('Problem finding command: "%s"' % identifier)

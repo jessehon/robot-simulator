@@ -15,7 +15,7 @@ class Direction(object):
 
     def __init__(self, value):
         if value not in self.VALUES:
-            raise InvalidDirectionError('Invalid direction')
+            raise InvalidDirectionError('Invalid direction: "%s"' % value)
         self._value = value
 
     def __eq__(self, other):
