@@ -16,6 +16,18 @@ class TestCommands():
         assert self.robot.position == Point(0,1)
         assert self.robot.direction == Direction("NORTH")
 
+    @raises(InvalidParametersError)
+    def test_place_invalid_position(self):
+        command = PlaceCommand(["0","A","NORTH"])
+
+    @raises(InvalidParametersError)
+    def test_place_invalid_direction(self):
+        command = PlaceCommand(["0","1","UP"])
+
+    @raises(InvalidParametersError)
+    def test_place_missing_params(self):
+        command = PlaceCommand()
+
     def test_move(self):
         place_command = PlaceCommand(["4","0","NORTH"])
         place_command.invoke(target=self.robot)

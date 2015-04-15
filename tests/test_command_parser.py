@@ -10,18 +10,6 @@ class TestCommandParser():
         assert command.identifier == "PLACE"
         assert command.params == ["0", "1", "NORTH"]
 
-    @raises(CommandParseError)
-    def test_place_invalid_position(self):
-        command = self.commandParser.parse_line("PLACE 0,A,NORTH")
-
-    @raises(CommandParseError)
-    def test_place_invalid_direction(self):
-        command = self.commandParser.parse_line("PLACE 0,1,UP")
-
-    @raises(CommandParseError)
-    def test_place_missing_params(self):
-        command = self.commandParser.parse_line("PLACE")
-
     def test_move(self):
         command = self.commandParser.parse_line("MOVE")
         assert command.identifier == "MOVE"

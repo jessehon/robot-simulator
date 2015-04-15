@@ -2,6 +2,9 @@ from abc import ABCMeta, abstractmethod
 from positioning import Point
 from direction import Direction
 
+class InvalidParametersError(Exception):
+    pass
+
 class BaseCommand():
     __metaclass__ = ABCMeta
     identifier = ""
@@ -28,8 +31,11 @@ class PlaceCommand(BaseCommand):
     @BaseCommand.params.setter
     def params(self, values):
         BaseCommand.params.fset(self, values)
-        self._position = Point(values[0], values[1])
-        self._direction = Direction(values[2])
+        try:
+            self._position = Point(values[0], values[1])
+            self._direction = Direction(values[2])
+        except:
+            raise InvalidParametersError("Invalid parameters for PLACE")
 
     def invoke(self, target):
         target.place(self._position, self._direction)
