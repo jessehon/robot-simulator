@@ -1,8 +1,11 @@
 import sys
 from simulation import Simulation
 
-if __name__ == "__main__":
+def main():
     simulation = Simulation()
 
     for line in sys.stdin:
         simulation.run(line)
+
+if __name__ == "__main__":
+    main()

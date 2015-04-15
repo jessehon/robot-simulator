@@ -11,7 +11,12 @@ config = {
     'packages': ['robot_simulator'],
     'install_requires': [],
     'scripts': [],
-    'name': 'robotsimulator'
+    'name': 'robotsimulator',
+    'entry_points': {
+        'console_scripts': [
+            'robotsimulator = robot_simulator.__main__:main',
+        ],
+    },
 }
 
 setup(**config)
