@@ -55,5 +55,4 @@ class Robot(object):
         if not self._direction:
             raise MissingPlaceError('Unable to report Robot until placed')
 
-        print ("Output: %d,%d,%s" %
-                (self._position.x, self._position.y, self._direction.value))
+        return ("%d,%d,%s" % (self._position.x, self._position.y, self._direction.value))

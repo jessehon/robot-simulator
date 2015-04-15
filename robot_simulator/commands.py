@@ -56,4 +56,4 @@ class ReportCommand(BaseCommand):
     identifier = "REPORT"
 
     def invoke(self, target):
-        target.report()
+        print ("Output: %s" % target.report())
