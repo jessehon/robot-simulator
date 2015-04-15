@@ -1,4 +1,4 @@
-from position import Vector
+from positioning import Vector
 
 class InvalidDirectionError(Exception):
     pass

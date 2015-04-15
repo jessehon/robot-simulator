@@ -2,7 +2,7 @@ from nose.tools import raises
 from robot_simulator.robot import *
 from robot_simulator.board import Board
 from robot_simulator.commands import *
-from robot_simulator.position import Point, Vector
+from robot_simulator.positioning import Point, Vector
 from robot_simulator.direction import Direction
 
 class TestCommands():

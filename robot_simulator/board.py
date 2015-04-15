@@ -1,4 +1,4 @@
-from position import Point, Rect
+from positioning import Point, Rect
 
 class Board(object):
     def __init__(self, size_x, size_y):

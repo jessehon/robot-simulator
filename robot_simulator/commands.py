@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from position import Point
+from positioning import Point
 from direction import Direction
 
 class BaseCommand():
