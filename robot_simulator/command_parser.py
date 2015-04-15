@@ -13,11 +13,7 @@ class CommandParser(object):
     def parse(self, line):
         m = re.match(r"(\w+)( (.*))?", line)
         identifier = m.group(1)
-        params_text = m.group(3)
-        if params_text:
-            params = params_text.split(',')
-        else:
-            params = []
+        params = (m.group(3) or "").split(',')
 
         for command_class in self.command_classes:
             if identifier == command_class.identifier:
