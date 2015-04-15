@@ -68,19 +68,19 @@ class TestRobot():
         self.robot.place(Point(2, 4), Direction("NORTH"))
         self.robot.turn_by(1)
         assert self.robot.position == Point(2,4)
-        assert self.robot.direction.value == "EAST"
+        assert self.robot.direction == Direction("EAST")
 
         self.robot.turn_by(1)
         assert self.robot.position == Point(2,4)
-        assert self.robot.direction.value == "SOUTH"
+        assert self.robot.direction == Direction("SOUTH")
 
         self.robot.turn_by(1)
         assert self.robot.position == Point(2,4)
-        assert self.robot.direction.value == "WEST"
+        assert self.robot.direction == Direction("WEST")
 
         self.robot.turn_by(1)
         assert self.robot.position == Point(2,4)
-        assert self.robot.direction.value == "NORTH"
+        assert self.robot.direction == Direction("NORTH")
 
     @raises(MissingPlaceError)
     def test_right_without_place(self):
