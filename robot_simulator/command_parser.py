@@ -12,6 +12,9 @@ class CommandParser(object):
 
     def parse(self, line):
         m = re.match(r"(\w+)( (.*))?", line)
+        if not m:
+            raise InvalidCommandFormatError('Invalid format for line: "%s"' % line)
+
         identifier = m.group(1)
         params = (m.group(3) or "").split(',')
 

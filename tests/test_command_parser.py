@@ -26,6 +26,10 @@ class TestCommandParser():
         command = self.commandParser.parse("REPORT")
         assert command.identifier == "REPORT"
 
+    @raises(InvalidCommandFormatError)
+    def test_invalid_command_format(self):
+        command = self.commandParser.parse(" MOVE")
+
     @raises(CommandNotFoundError)
-    def test_invalid_command(self):
+    def test_command_not_found(self):
         command = self.commandParser.parse("TEST")
