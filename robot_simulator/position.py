@@ -6,7 +6,14 @@ class Point(object):
         self.y = y
 
     def __eq__(self, other):
-        return (self.x == other.x) and (self.y == other.y)
+        if isinstance(other, Point):
+            return (self.x == other.x) and (self.y == other.y)
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, Point):
+            return not (self == other)
+        return NotImplemented
 
     def __add__(self, other):
         x = self._x + other.x
@@ -28,8 +35,6 @@ class Point(object):
     @y.setter
     def y(self, value):
         self._y = int(value)
-
-
 
 class Vector(Point):
     def __mul__(self, scale):

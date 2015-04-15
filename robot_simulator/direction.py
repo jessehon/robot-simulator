@@ -15,6 +15,16 @@ class Direction(object):
             raise Exception('bad direction')
         self._value = value
 
+    def __eq__(self, other):
+        if isinstance(other, Direction):
+            return (self.value == other.value)
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, Direction):
+            return not (self == other)
+        return NotImplemented
+
     @property
     def vector(self):
         return self.VECTORS[self._value]
