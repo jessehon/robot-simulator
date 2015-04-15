@@ -10,15 +10,7 @@ class CommandNotFoundError(Exception):
 class CommandParser(object):
     command_classes = [PlaceCommand, MoveCommand, LeftCommand, RightCommand, ReportCommand]
 
-    def parse_file(self, input_file):
-        lines = input_file.read().splitlines()
-        commands = []
-        for line in lines:
-            command = self.parse_line(line)
-            commands.append(command)
-        return commands
-
-    def parse_line(self, line):
+    def parse(self, line):
         m = re.match(r"(\w+)( (.*))?", line)
         identifier = m.group(1)
         params_text = m.group(3)

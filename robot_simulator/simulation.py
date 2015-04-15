@@ -4,23 +4,19 @@ from command_parser import CommandParser
 
 class Simulation(object):
     def __init__(self):
+        self.command_parser = CommandParser()
         self.reset()
 
     def reset(self):
         self.board = Board(5, 5)
         self.robot = Robot(self.board)
 
-    def run_file(self, input_file):
-        command_parser = CommandParser()
-        commands = command_parser.parse_file(input_file)
-        self.run(commands)
+    def run(self, line):
+        command = self.command_parser.parse(line)
 
-    def run(self, commands):
-        for command in commands:
-
-            try:
-                command.invoke(target=self.robot)
-            except MoveOutOfBoundsError as e:
-                print 'Skip %s:' % command.identifier, e
-            except MissingPlaceError as e:
-                print 'Skip %s:' % command.identifier, e
+        try:
+            command.invoke(target=self.robot)
+        except MoveOutOfBoundsError as e:
+            print 'Skip %s:' % command.identifier, e
+        except MissingPlaceError as e:
+            print 'Skip %s:' % command.identifier, e
